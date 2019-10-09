@@ -23,7 +23,7 @@ Auth::routes(['verify' => true]);
 
 //Route::get('/guest-list', 'Controller@guests')->middleware('auth')->middleware('verified');
 
-Route::get('/guest-list', 'UserController@index')->middleware('auth');
+Route::get('/guest-list', 'UserController@index')->middleware('auth')->middleware('verified');
 
 Route::patch('/users/{user}', 'UserController@update');
 
