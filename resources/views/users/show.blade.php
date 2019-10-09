@@ -47,11 +47,12 @@
                                     </div>
                                 </article>
                             </a>
+
                             {{--<button type="button" href="/messages/{{$message->id}}/edit">Edit Message</button><br>--}}
                             <div class="field">
                                 <div class="control">
-                                    @can('reply', $message)<a href="/replies/create">Reply</a>@endcan
-                                    <a class="pads" href="/messages/{{$message->id}}/edit">Edit</a>
+                                    {{--@can('reply', $message)<a href="/replies/create">Reply</a>@endcan--}}
+                                    <a class="pads" href="/messages/{{$message->id}}/edit">Edit Message</a>
                                     {{--<form method="post" action="/messages/{{$message->id}}">--}}
                                     {{--{{method_field('DELETE')}}--}}
                                     {{--{{csrf_field()}}--}}
@@ -67,6 +68,44 @@
                                     {{--</form>--}}
                                 </div>
                             </div>
+                            @can('reply', $message)
+                                <form method="post" action="/messages/{{$message->id}}/replies" style="margin-top: 1em">
+                                    {{--@method('PATCH')--}}
+                                    @csrf
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea style="height: 4em" type="text" class="input" name="description" placeholder="Reply To Message" value="{{old('description')}}"></textarea>
+                                            <button type="submit" class="button is-link">Reply</button>
+                                        </div>
+                                    </div>
+
+                                    {{--<div class="field">--}}
+                                    {{--<div class="control">--}}
+                                    {{--<button type="submit" class="button is-link">Reply</button>--}}
+                                    {{--</div>--}}
+                                    {{--</div>--}}
+
+                                    @include('messages/errors')
+
+
+                                </form>
+                            @endcan
+                            @if($message->replies->count())
+                                @foreach($message->replies as $reply)
+                                    <div style="padding-left: 1em; padding-bottom: .5em">
+                                        <article class="message is-small is-grey-lighter" style="width: 80em !important;">
+                                            <div class="message-header">
+                                                <p>{{$reply->created_at}}</p>
+                                                {{--<button class="delete is-small" aria-label="delete"></button>--}}
+                                            </div>
+                                            <div class="message-body">
+                                                {{$reply->description}}
+                                            </div>
+                                        </article>
+                                    </div>
+
+                                @endforeach
+                            @endif
                             {{--<div class="field">--}}
                             {{--<div class="control">--}}
                             {{--<a href="/replies/create">Reply</a>--}}
