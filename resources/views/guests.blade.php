@@ -18,6 +18,7 @@
             <th><abbr title="Email">Email Address</abbr></th>
             <th><abbr title="Phone">Phone</abbr></th>
             <th><abbr title="Admin">Admin</abbr></th>
+            <th><abbr title="Messages">Messages</abbr></th>
         </tr>
         </thead>
         {{--<tfoot>--}}
@@ -47,6 +48,7 @@
 
                         </form>
                 </td>
+                <td><a href="/users/{{$guest->id}}">View Messages</a></td>
             </tr>
         @endforeach
             <tr>

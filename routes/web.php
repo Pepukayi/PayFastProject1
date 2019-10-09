@@ -27,7 +27,12 @@ Route::get('/guest-list', 'UserController@index')->middleware('auth');
 
 Route::patch('/users/{user}', 'UserController@update');
 
+Route::resource('users', 'UserController');
+
 Route::resource('messages', 'MessagesController');
+
+Route::resource('replies', 'RepliesController');
+Route::post('/messages/{message}/reply', 'RepliesController@store');
 
 
 

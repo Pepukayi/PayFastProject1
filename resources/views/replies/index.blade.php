@@ -33,14 +33,13 @@
             {{--<button type="button" href="/messages/{{$message->id}}/edit">Edit Message</button><br>--}}
             <div class="field">
                 <div class="control">
-                    <button type="submit" class="button" href="/messages/{{$message->id}}/edit">Edit Message</button>
+                    <a type="submit" class="button" href="/messages/{{$message->id}}/edit">Edit Message</a>
                 </div>
             </div>
-            <div class="field">
-                <div class="control">
-                    <a href="/replies/create">Reply To Message</a>
-                </div>
-            </div>
+            <p>
+                <a href="/messages/{{$message->id}}/edit">Edit Message</a>
+            </p>
+
             <form method="post" action="/messages/{{$message->id}}">
                 {{--{{method_field('DELETE')}}--}}
                 {{--{{csrf_field()}}--}}
@@ -53,7 +52,9 @@
                     </div>
                 </div>
             </form>
-            <a></a>
+            <p>
+                <a href="/messages/{{$message->id}}/edit">Edit Message</a>
+            </p>
         </li>
         @endforeach
     </ul>
