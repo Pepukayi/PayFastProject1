@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
 
         //To allow admins access or super users
         Gate::before(function ($user){
-            if ($user->user_level == 1)            //admin user level
+            if ($user->id == 1)            //admin user level  user_level == 1
                 return true;
         });
     }

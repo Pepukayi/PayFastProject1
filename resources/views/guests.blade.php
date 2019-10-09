@@ -17,8 +17,10 @@
             <th><abbr title="Surname">Surname</abbr></th>
             <th><abbr title="Email">Email Address</abbr></th>
             <th><abbr title="Phone">Phone</abbr></th>
-            <th><abbr title="Admin">Admin</abbr></th>
-            <th><abbr title="Messages">Messages</abbr></th>
+            @can('update', $guests[0])
+                <th><abbr title="Admin">Admin</abbr></th>
+                <th><abbr title="Messages">Messages</abbr></th>
+            @endcan
         </tr>
         </thead>
         {{--<tfoot>--}}
@@ -38,6 +40,7 @@
                 <td>{{$guest->last_name}}</td>
                 <td>{{$guest->email}}</td>
                 <td>{{$guest->phone_number}}</td>
+                @can('update', $guest)
                 <td>
                         <form method="post" action="users/{{$guest->id}}">
                             @method('PATCH')
@@ -48,7 +51,9 @@
 
                         </form>
                 </td>
+
                 <td><a href="/users/{{$guest->id}}">View Messages</a></td>
+                @endcan
             </tr>
         @endforeach
             <tr>
