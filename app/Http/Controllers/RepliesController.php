@@ -41,7 +41,7 @@ class RepliesController extends Controller
         $validatedData = $this->validateReply();
         //$project->addTask(request('description'));
         $message->addReply($validatedData);
-        $message->user()->dump();
+        //$message->user()->dump();
 
         return back();
     }
@@ -99,8 +99,8 @@ class RepliesController extends Controller
     protected function validateReply()
     {
         return request()->validate([
-            'title' => ['required', 'min:3', 'max:30'],
-            'status' => ['required', 'min:3', 'max:30'],
+//            'title' => ['required', 'min:3', 'max:30'],
+//            'status' => ['required', 'min:3', 'max:30'],
             'description' => ['required', 'min:3', 'max:50'],
 //            'password' => ['required', 'confirmed']
         ]);

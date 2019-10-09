@@ -8,7 +8,7 @@
             {{--<li>{{$project->title}}</li>--}}
         {{--@endforeach--}}
     {{--</ul>--}}
-    <h3 class="title">Edit Messages</h3>
+    <h3 class="title" style="margin-left: 7em;">Edit Message</h3>
 
     <form method="post" action="/messages/{{$message->id}}">
         {{csrf_field()}}
@@ -17,14 +17,14 @@
             <div class="field">
                 <label class="label" for="title">Title</label>
                 <div class="control">
-                    <input type="text" class="input {{$errors->has('title')? 'is-danger':''}}" name="title" placeholder="Message Title" value="{{$message->title}}">
+                    <input type="text" class="input is-primary {{$errors->has('title')? 'is-danger':''}}" name="title" placeholder="Message Title" value="{{$message->title}}">
                 </div>
             </div>
 
             <div class="field">
                 <label class="label" for="description">Description</label>
                 <div class="control">
-                    <textarea name="description" placeholder="Project Description" class="sizing textarea {{$errors->has('description')? 'is-danger':''}}">{{$message->description}}</textarea>
+                    <textarea name="description" placeholder="Project Description" class="sizing textarea is-primary {{$errors->has('description')? 'is-danger':''}}">{{$message->description}}</textarea>
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
 
             <div class="field">
                 <div class="control">
-                    <button type="submit" class="button">Update Message</button>
+                    <button type="submit" class="button is-primary">Update Message</button>
                 </div>
             </div>
         </div>
@@ -67,18 +67,21 @@
         {{--</div>--}}
     {{--</form>--}}
     {{--@include('messages/errors')--}}
-    <form method="post" action="/messages/{{$message->id}}">
-        {{--{{method_field('DELETE')}}--}}
-        {{--{{csrf_field()}}--}}
-        {{--Can do the above like the below--}}
-        @method('DELETE')
-        @csrf
-        <div class="field">
-            <div class="control">
-                <button type="submit" class="button">Delete Message</button>
-            </div>
+    <div style="margin-left: 7em; margin-top: 1em">
+        <form method="post" action="/messages/{{$message->id}}">
+    {{--{{method_field('DELETE')}}--}}
+    {{--{{csrf_field()}}--}}
+    {{--Can do the above like the below--}}
+    @method('DELETE')
+    @csrf
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-danger">Delete Message</button>
         </div>
+    </div>
     </form>
+    </div>
+
 
 
 

@@ -2,9 +2,15 @@
 
 @section('title', 'Edit')
 
+<style>
+    .pads{
+        padding-left: 10px;
+    }
+</style>
+
 @section('content')
 
-    <h3>Messages from {{$user->first_name}} {{$user->last_name}}</h3>
+    <h3 style="padding-left: 10em">Messages from {{$user->first_name}} {{$user->last_name}}</h3>
 
     {{--<div>{{$user->description}}</div>--}}
     {{--<p>--}}
@@ -12,9 +18,9 @@
     {{--</p>--}}
     @if($user->messages->count())
         <div>
-            @foreach($user->messages as $Message)
-                <div>
-                    {{$Message->title}}<br>{{$Message->priority}}<br>{{$Message->description}}
+            {{--@foreach($user->messages as $Message)--}}
+                {{--<div>--}}
+                    {{--{{$Message->title}}<br>{{$Message->priority}}<br>{{$Message->description}}--}}
                     {{--<form method="post" action="/tasks/{{$task->id}}" class="box">--}}
                         {{--@method('PATCH')--}}
                         {{--@csrf--}}
@@ -23,9 +29,65 @@
                             {{--{{$task->description}}--}}
                         {{--</label>--}}
                     {{--</form>--}}
-                </div>
+                {{--</div>--}}
 
-            @endforeach
+
+            {{--@endforeach--}}
+                <ul style="padding-left: 10em; padding-top: 1em">
+                    @foreach($user->messages as $message)
+                        <li style="margin-bottom: 1em">
+                            <a href="/messages/{{$message->id}}">
+                                <article class="message is-small is-primary" style="width: 80em !important;">
+                                    <div class="message-header">
+                                        <p>{{$message->title}} <br>Priority: {{$message->priority}}</p>
+                                        {{--<button class="delete is-small" aria-label="delete"></button>--}}
+                                    </div>
+                                    <div class="message-body">
+                                        {{$message->description}}
+                                    </div>
+                                </article>
+                            </a>
+                            {{--<button type="button" href="/messages/{{$message->id}}/edit">Edit Message</button><br>--}}
+                            <div class="field">
+                                <div class="control">
+                                    @can('reply', $message)<a href="/replies/create">Reply</a>@endcan
+                                    <a class="pads" href="/messages/{{$message->id}}/edit">Edit</a>
+                                    {{--<form method="post" action="/messages/{{$message->id}}">--}}
+                                    {{--{{method_field('DELETE')}}--}}
+                                    {{--{{csrf_field()}}--}}
+                                    {{--Can do the above like the below--}}
+                                    {{--@method('DELETE')--}}
+                                    {{--@csrf--}}
+
+                                    {{--<div class="control">--}}
+                                    {{--<a type="submit">Delete</a>--}}
+                                    {{--<button class="button">Delete Message</button>--}}
+                                    {{--</div>--}}
+
+                                    {{--</form>--}}
+                                </div>
+                            </div>
+                            {{--<div class="field">--}}
+                            {{--<div class="control">--}}
+                            {{--<a href="/replies/create">Reply</a>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<form method="post" action="/messages/{{$message->id}}">--}}
+                            {{--{{method_field('DELETE')}}--}}
+                            {{--{{csrf_field()}}--}}
+                            {{--Can do the above like the below--}}
+                            {{--@method('DELETE')--}}
+                            {{--@csrf--}}
+                            {{--<div class="field">--}}
+                            {{--<div class="control">--}}
+                            {{--<button type="submit" class="button">Delete Message</button>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--</form>--}}
+                            <a></a>
+                        </li>
+                    @endforeach
+                </ul>
         </div>
     @endif
 

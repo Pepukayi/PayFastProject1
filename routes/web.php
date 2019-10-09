@@ -32,7 +32,7 @@ Route::resource('users', 'UserController');
 Route::resource('messages', 'MessagesController');
 
 Route::resource('replies', 'RepliesController');
-Route::post('/messages/{message}/reply', 'RepliesController@store');
+Route::post('/messages/{message}/replies', 'RepliesController@store');
 
 
 
