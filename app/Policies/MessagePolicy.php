@@ -46,7 +46,6 @@ class MessagePolicy
 
     public function reply(User $user, Message $message)
     {
-        //$user_id = $message->user_id;
         return($user->user_level == 1);
     }
 

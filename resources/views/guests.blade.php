@@ -1,19 +1,13 @@
-@extends('layouts.addressbooklayout')
+@extends('layouts.guest-book-layout')
 
 @section('title', 'Home')
 
 @section('content')
 
-    {{--<ul>--}}
-        {{--@foreach($guests as $guest)--}}
-            {{--<li>{{$guest}}</li>--}}
-        {{--@endforeach--}}
-    {{--</ul>--}}
-
-    <table class="table">
+    <table class="table is-medium" style="font-size: large; padding-left: 5em">
         <thead>
         <tr>
-            <th><abbr title="Name">Name</abbr></th>
+            <th class="is-medium"><abbr title="Name">Name</abbr></th>
             <th><abbr title="Surname">Surname</abbr></th>
             <th><abbr title="Email">Email Address</abbr></th>
             <th><abbr title="Phone">Phone</abbr></th>
@@ -23,18 +17,8 @@
             @endcan
         </tr>
         </thead>
-        {{--<tfoot>--}}
-        {{--<tr>--}}
-            {{--<th><abbr title="Name">Name</abbr></th>--}}
-            {{--<th><abbr title="Surname">Surname</abbr></th>--}}
-            {{--<th><abbr title="Email">Email Address</abbr></th>--}}
-            {{--<th><abbr title="Phone">Phone</abbr></th>--}}
-            {{--<th><abbr title="Admin">Admin</abbr></th>--}}
-        {{--</tr>--}}
-        {{--</tfoot>--}}
         <tbody>
         @foreach($guests as $guest)
-            {{--<li>{{$guest}}</li>--}}
             <tr>
                 <td>{{$guest->first_name}}</td>
                 <td>{{$guest->last_name}}</td>

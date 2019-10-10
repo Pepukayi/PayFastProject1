@@ -81,12 +81,6 @@ class RegisterController extends Controller
 
         $this->flashMessages('You have been successfully registered. Please confirm your registration by going into your email and clicking the link provided.');
 
-
-        //Send confirmation email
-        //dispatch(new SendEmailJob($data));
-
-        //SendEmailJob::dispatch(new RegistrationCompleted ($data));
-
         return $user;
         return redirect('/home');
 
@@ -108,40 +102,6 @@ class RegisterController extends Controller
             ?: redirect($this->redirectPath());
     }
 
-//    public function guests()
-//    {
-//        $users = User::all();
-//        return view('guests', ['guests' => $users]);
-//    }
-
-//    public function update(User $user)
-//    {
-//        //Method 1
-//        if(request()->has('admin'))
-//        {
-//            $user->setAdmin();
-//        }else{
-//            $user->setGuest();
-//        }
-//
-//        //Method 2
-//        //request()->has('completed') ? $task->complete() : $task->incomplete();
-//
-//        //Method 3
-//        //$method = request()->has('completed') ? 'complete' : 'incomplete';
-//        //$task->$method();
-//
-//        //$task->complete(request()->has('completed'));
-//        //
-//        //dd(\request()->all());
-//        //With the method below we allowing the controller to update models whereas with the method above we further
-//        // encapsulate by giving models control over manipulation of the data
-////        $task->update([
-////            'completed' => \request()->has('completed')
-////        ]);
-//
-//        return back();
-//    }
 
     public function flashMessages($message)
     {

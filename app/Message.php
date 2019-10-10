@@ -29,24 +29,17 @@ class Message extends Model
     {
         $this->replies()->create($reply);
 
+        //sending Message owner email
         $user = User::find($message->user_id, ['id', 'email']);
-//        echo '<pre>';
-//        print_r($user->email);
-//        echo '</pre>';
-        //$messageOwnerEmail = $message->owner()->email;
-        //var_dump($message->owner());
         \Mail::to($user->email)->queue(
             new ReplyCreated($reply)
         );
     }
 
-    //functionality for sending email has now been further moved into the SendMessageCreatedNotification listener
     protected static function boot()
     {
         parent::boot();
 
-        $user = User::find(1, ['id', 'email']);
-        //uses model event hook: //https://laravel.com/docs/5.6/eloquent#events
         static::created(function($message){
             $user = User::find(1, ['id', 'email']);   //send email to admin
             \Mail::to($user->email)->queue(

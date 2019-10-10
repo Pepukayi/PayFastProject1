@@ -15,7 +15,7 @@ class CreateRepliesTable extends Migration
     {
         Schema::create('replies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('message_id')->unsigned(); //was owner_id will check whats up    // unsigned -> positive integer
+            $table->bigInteger('message_id')->unsigned();
             $table->string('title')->nullable();
             $table->string('status')->nullable();
             $table->text('description');

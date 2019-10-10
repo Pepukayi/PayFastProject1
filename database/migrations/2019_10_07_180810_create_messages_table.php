@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('user_id')->unsigned(); //was owner_id will check whats up    // unsigned -> positive integer
+            $table->bigInteger('user_id')->unsigned();
             $table->string('title');
             $table->string('priority');
             $table->text('description');

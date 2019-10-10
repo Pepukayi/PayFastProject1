@@ -27,7 +27,6 @@ class RepliesController extends Controller
     public function create()
     {
         $replies = Reply::all();
-        //return $projects;
         return view('replies/create', ['replies' => $replies]);
     }
 
@@ -40,19 +39,11 @@ class RepliesController extends Controller
     public function store(Message $message)
     {
         $validatedData = $this->validateReply();
-        //$project->addTask(request('description'));
-        //var_dump($message);
-        $message->addReply($validatedData, $message);
-        //$message->user()->dump();
 
+        $message->addReply($validatedData, $message);
 
         return back();
     }
-
-//    public function reply(Message $message)
-//    {
-//        $message =
-//    }
 
     /**
      * Display the specified resource.
@@ -105,7 +96,6 @@ class RepliesController extends Controller
 //            'title' => ['required', 'min:3', 'max:30'],
 //            'status' => ['required', 'min:3', 'max:30'],
             'description' => ['required', 'min:3', 'max:50'],
-//            'password' => ['required', 'confirmed']
         ]);
     }
 

@@ -16,11 +16,8 @@ class MessagesController extends Controller
 
     public function __construct()
     {
-        //below is to ensure user is registered to access certain pages. Can be done also in the route file web.php
 
-        //$this->middleware('auth');    // will require logins for every page
-        //$this->middleware('auth')->only(['store', 'update']);    //will require logins for the included pages only
-        $this->middleware('auth')->except(['show']);    //will require logins for all others except included pages only
+        $this->middleware('auth');         //->except(['show']);
     }
 
     public function index()
@@ -118,7 +115,6 @@ class MessagesController extends Controller
     public function destroy(Message $message)
     {
         $this->authorize('update', $message);
-        //dd('Hello');
         $message->delete();
         return redirect('/messages');
     }
@@ -126,10 +122,9 @@ class MessagesController extends Controller
     protected function validateMessage()
     {
         return request()->validate([
-            'title' => ['required', 'min:3', 'max:50'],
+            'title' => ['required', 'min:3', 'max:100'],
             'priority' => ['required', 'min:3', 'max:30'],
             'description' => ['required', 'min:3', 'max:500'],
-//            'password' => ['required', 'confirmed']
         ]);
     }
 

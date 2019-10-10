@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
-    {{--<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">--}}
-
-
 
     <link rel="shortcut icon" href="{{ asset('img/logo_42.jpg') }}">
 
@@ -39,19 +36,6 @@
 </head>
 <body>
 <div class="flex-center position-ref full-height">
-    {{--@if (Route::has('login'))--}}
-    {{--<div class="top-right links">--}}
-    {{--@auth--}}
-    {{--<a href="{{ url('/home') }}">Home</a>--}}
-    {{--@else--}}
-    {{--<a href="{{ route('login') }}">Login</a>--}}
-
-    {{--@if (Route::has('register'))--}}
-    {{--<a href="{{ route('register') }}">Register</a>--}}
-    {{--@endif--}}
-    {{--@endauth--}}
-    {{--</div>--}}
-    {{--@endif--}}
 
     <div class="content">
         @include('header')

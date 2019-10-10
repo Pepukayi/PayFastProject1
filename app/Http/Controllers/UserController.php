@@ -79,22 +79,6 @@ class UserController extends Controller
             $user->setGuest();
         }
 
-        //Method 2
-        //request()->has('completed') ? $task->complete() : $task->incomplete();
-
-        //Method 3
-        //$method = request()->has('completed') ? 'complete' : 'incomplete';
-        //$task->$method();
-
-        //$task->complete(request()->has('completed'));
-        //
-        //dd(\request()->all());
-        //With the method below we allowing the controller to update models whereas with the method above we further
-        // encapsulate by giving models control over manipulation of the data
-//        $task->update([
-//            'completed' => \request()->has('completed')
-//        ]);
-
         return back();
     }
 
@@ -108,12 +92,6 @@ class UserController extends Controller
     {
         //
     }
-
-//    public function guests()
-//    {
-//        $users = User::all();
-//        return view('guests', ['guests' => $users]);
-//    }
 
     public function flashMessages($message)
     {

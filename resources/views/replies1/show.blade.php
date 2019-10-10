@@ -1,4 +1,4 @@
-@extends('layouts.addressbooklayout')
+@extends('layouts.guest-book-layout')
 
 @section('title', 'Edit')
 

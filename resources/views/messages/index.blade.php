@@ -1,4 +1,4 @@
-@extends('layouts.addressbooklayout')
+@extends('layouts.guest-book-layout')
 
 @section('title', 'Your Messages')
 
@@ -12,15 +12,6 @@
     @if (session('message'))
         <p style="font-size: medium" class="has-text-centered">{{session('message')}}</p>
     @endif
-    {{--<ul>--}}
-        {{--@foreach($messages as $message)--}}
-            {{--<li>--}}
-                {{--<a href="/messages/{{$message->id}}">--}}
-                    {{--{{$message->title}}--}}
-                {{--</a>--}}
-            {{--</li>--}}
-        {{--@endforeach--}}
-    {{--</ul>--}}
 
     <h3 class="has-text-centered">All Messages</h3>
 
@@ -28,34 +19,20 @@
         @foreach($messages as $message)
         <li style="margin-bottom: 1em; width: 81em !important;" class="box">
             <a href="/messages/{{$message->id}}">
-                <article class="message is-primary" style="width: 63em !important;">
+                <article class="message is-grey" style="width: 63em !important;">
                     <div class="message-header">
                         <p>{{$message->title}} <br>Priority: {{$message->priority}}<br>{{$message->created_at}}</p>
-                        {{--<button class="delete is-small" aria-label="delete"></button>--}}
                     </div>
                     <div class="message-body">
                         {{$message->description}}
                     </div>
                 </article>
             </a>
-            {{--<button type="button" href="/messages/{{$message->id}}/edit">Edit Message</button><br>--}}
+
             <div class="field">
                 <div class="control">
-                    {{--@can('reply', $message)<a href="/replies/create">Reply</a>@endcan--}}
+
                     <a class="pads" href="/messages/{{$message->id}}/edit">Edit Message</a>
-                    {{--<form method="post" action="/messages/{{$message->id}}">--}}
-                        {{--{{method_field('DELETE')}}--}}
-                        {{--{{csrf_field()}}--}}
-                        {{--Can do the above like the below--}}
-                        {{--@method('DELETE')--}}
-                        {{--@csrf--}}
-
-                            {{--<div class="control">--}}
-                                {{--<a type="submit">Delete</a>--}}
-                                {{--<button class="button">Delete Message</button>--}}
-                            {{--</div>--}}
-
-                    {{--</form>--}}
                 </div>
             </div>
             @can('reply', $message)
@@ -68,13 +45,6 @@
                             <button type="submit" class="button is-link">Reply</button>
                         </div>
                     </div>
-
-                    {{--<div class="field">--}}
-                        {{--<div class="control">--}}
-                            {{--<button type="submit" class="button is-link">Reply</button>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-
                     @include('messages/errors')
 
 
@@ -86,7 +56,6 @@
                             <article class="message is-small is-grey-lighter" style="width: 80em !important;">
                                 <div class="message-header">
                                     <p>{{$reply->created_at}}</p>
-                                    {{--<button class="delete is-small" aria-label="delete"></button>--}}
                                 </div>
                                 <div class="message-body">
                                     {{$reply->description}}
@@ -96,23 +65,6 @@
 
                     @endforeach
             @endif
-            {{--<div class="field">--}}
-                {{--<div class="control">--}}
-                    {{--<a href="/replies/create">Reply</a>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<form method="post" action="/messages/{{$message->id}}">--}}
-                {{--{{method_field('DELETE')}}--}}
-                {{--{{csrf_field()}}--}}
-                {{--Can do the above like the below--}}
-                {{--@method('DELETE')--}}
-                {{--@csrf--}}
-                {{--<div class="field">--}}
-                    {{--<div class="control">--}}
-                        {{--<button type="submit" class="button">Delete Message</button>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</form>--}}
             <a></a>
         </li>
         @endforeach
