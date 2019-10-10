@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Message;
 use App\Reply;
+use App\User;
 use Illuminate\Http\Request;
 
 class RepliesController extends Controller
@@ -40,8 +41,10 @@ class RepliesController extends Controller
     {
         $validatedData = $this->validateReply();
         //$project->addTask(request('description'));
-        $message->addReply($validatedData);
+        //var_dump($message);
+        $message->addReply($validatedData, $message);
         //$message->user()->dump();
+
 
         return back();
     }

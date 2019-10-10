@@ -126,9 +126,9 @@ class MessagesController extends Controller
     protected function validateMessage()
     {
         return request()->validate([
-            'title' => ['required', 'min:3', 'max:30'],
+            'title' => ['required', 'min:3', 'max:50'],
             'priority' => ['required', 'min:3', 'max:30'],
-            'description' => ['required', 'min:3', 'max:50'],
+            'description' => ['required', 'min:3', 'max:500'],
 //            'password' => ['required', 'confirmed']
         ]);
     }

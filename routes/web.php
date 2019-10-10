@@ -25,14 +25,14 @@ Auth::routes(['verify' => true]);
 
 Route::get('/guest-list', 'UserController@index')->middleware('auth')->middleware('verified');
 
-Route::patch('/users/{user}', 'UserController@update');
+Route::patch('/users/{user}', 'UserController@update')->middleware('auth')->middleware('verified');;
 
-Route::resource('users', 'UserController');
+Route::resource('users', 'UserController')->middleware('auth')->middleware('verified');;
 
-Route::resource('messages', 'MessagesController');
+Route::resource('messages', 'MessagesController')->middleware('auth')->middleware('verified');;
 
-Route::resource('replies', 'RepliesController');
-Route::post('/messages/{message}/replies', 'RepliesController@store');
+Route::resource('replies', 'RepliesController')->middleware('auth')->middleware('verified');;
+Route::post('/messages/{message}/replies', 'RepliesController@store')->middleware('auth')->middleware('verified');;
 
 
 

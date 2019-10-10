@@ -10,7 +10,7 @@
 
 @section('content')
     @if (session('message'))
-        <p>{{session('message')}}</p>
+        <p style="font-size: medium" class="has-text-centered">{{session('message')}}</p>
     @endif
     {{--<ul>--}}
         {{--@foreach($messages as $message)--}}
@@ -22,7 +22,7 @@
         {{--@endforeach--}}
     {{--</ul>--}}
 
-    <h3 style="padding-left: 10em">Messages from all users</h3>
+    <h3 class="has-text-centered">All Messages</h3>
 
     <ul style="padding-left: 10em !important; padding-top: 1em">
         @foreach($messages as $message)

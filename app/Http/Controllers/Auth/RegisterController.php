@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+//below are to avoid auto-login after registration
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -76,15 +79,33 @@ class RegisterController extends Controller
 
         $user = User::create($userData);
 
+        $this->flashMessages('You have been successfully registered. Please confirm your registration by going into your email and clicking the link provided.');
+
+
         //Send confirmation email
         //dispatch(new SendEmailJob($data));
 
         //SendEmailJob::dispatch(new RegistrationCompleted ($data));
 
         return $user;
+        return redirect('/home');
 
-        $this->flashMessages('You have been successfully registered. Please confirm your registration by going into your emails and clicking the link provided.');
 
+    }
+
+    /*overriding the register method in Illuminate\Foundation\Auth\RegistersUsers
+    so as to avoid auto login after registration
+    */
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        //$this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 
 //    public function guests()
